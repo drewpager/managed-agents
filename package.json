@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
+    "@dotenvx/dotenvx": "^1.61.0"
+  },
+  "name": "managed-agents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "dotenvx run npx tsx agent/index.ts",
+    "script": "dotenvx run npx tsx agent/script.ts",
+    "encrypt": "dotenvx encrypt -f .env",
+    "decrypt": "dotenvx decrypt -f .env"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  }
+}
