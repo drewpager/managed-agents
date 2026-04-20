@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
-    "@dotenvx/dotenvx": "^1.61.0"
+    "@dotenvx/dotenvx": "^1.61.1"
   },
   "name": "managed-agents",
   "version": "1.0.0",
