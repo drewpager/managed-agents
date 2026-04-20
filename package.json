@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "dotenvx run npx tsx agent/index.ts",
     "script": "dotenvx run npx tsx agent/script.ts",
+    "invest": "dotenvx run npx tsx agent/invest.ts",
     "encrypt": "dotenvx encrypt -f .env",
     "decrypt": "dotenvx decrypt -f .env"
   },

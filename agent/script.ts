@@ -2,7 +2,6 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-console.log("Hello Github Token! ", process.env.GITHUB_ORIGINAL_TOKEN)
 const environments = await client.beta.environments.list()
 const sessions = await client.beta.sessions.list();
 const vaults = await client.beta.vaults.list();
@@ -17,6 +16,7 @@ for await (const data of environments) {
 
 for await (const data of sessions) {
   console.log(`${data.title} - ${data.status} - ${data.id}`)
+  console.log(`\nUsage for session ${data.id}: ${data.usage.input_tokens} input tokens, ${data.usage.output_tokens} output tokens`)
 }
 
 // // Delete all environments

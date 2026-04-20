@@ -1,2 +1,7 @@
 .env.keys
 node_modules/
+*.pptx
+*.xlsx
+*.pdf
+*.md
+*.txt
