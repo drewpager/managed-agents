@@ -35,7 +35,7 @@ const agent = await client.beta.agents.create({
 console.log(`Agent ID: ${agent.id}, version: ${agent.version}`);
 
 // const file = await client.beta.files.upload({
-//   file: await toFile(readFile("./agent/docs/MRNA-10k.pdf"), "MRNA-10k.pdf", { type: "application/pdf" })
+//   file: await toFile(readFile("./agent/docs/investment_memo.pdf"), "investment_memo.pdf", { type: "application/pdf" })
 // })
 
 // console.log(`File ID: ${file.id}`);
@@ -57,8 +57,13 @@ const session = await client.beta.sessions.create({
   resources: [
     {
       type: "file",
-      file_id: "file_011CaFCwkSnMz36BARf5mSZs",
+      file_id: "file_011CaFDrpFhbpbp9jeoEv7SK",
       mount_path: "/workspace/MRNA-10k.pdf",
+    },
+    {
+      type: "file",
+      file_id: "file_011CaK33maGqeKzjqHt4t5Sr",
+      mount_path: "/workspace/investment-memo.pdf",
     },
   ],
 });
@@ -75,7 +80,7 @@ await client.beta.sessions.events.send(session.id, {
       content: [
         {
           type: "text",
-          text: "What is your assessment of the investment potential of this company? Please provide a recommendation on whether I should invest in this company now, wait until certain conditions are met, or not at all. Please justify your answer using the tools available. Please add your work to a new file called 'investment-memo-[TICKER].md'"
+          text: "What is your assessment of the investment potential of $MRNA (see their 10k filing in \"MRNA-10k.pdf\")? Please provide a recommendation on whether I should invest in this company now, wait until certain conditions are met, or not at all. Please justify your answer using the tools available. Please add your work to a new file called 'investment-memo-[TICKER]'. Use the investment-memo.pdf file as a template for the format. Please download the file you create to ./investment-memos folder."
         },
       ],
     },
