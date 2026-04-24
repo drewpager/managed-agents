@@ -1,0 +1,53 @@
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+// List all assets
+const environments = await client.beta.environments.list()
+const sessions = await client.beta.sessions.list();
+const vaults = await client.beta.vaults.list();
+const files = await client.beta.files.list();
+
+// Delete all environments
+for await (const data of environments) {
+  console.log(`${data.name} - ${data.id}`)
+  await client.beta.environments.delete(data.id);
+  console.log(`Deleted ${data.name} - ${data.id}`)
+}
+
+// Delete all sessions
+for await (const data of sessions) {
+  console.log(`${data.title} - ${data.status}`)
+  if (data.status === "idle") {
+    await client.beta.sessions.delete(data.id);
+    console.log(`Deleted ${data.title} - ${data.id}`)
+  }
+  if (data.status === "running") {
+    const session = await client.beta.sessions.retrieve(data.id);
+    await client.beta.sessions.events.send(session.id, {
+      events: [
+        {
+          type: "user.interrupt",
+        }
+      ]
+    })
+    console.log(`Interrupted ${data.title} - ${data.id}`)
+  }
+}
+
+// // Delete all vault ids
+// for await (const data of vaults) {
+//   console.log(`${data.display_name} - ${data.id}`)
+//   await client.beta.vaults.delete(data.id);
+//   console.log(`Deleted ${data.display_name} - ${data.id}`)
+// }
+
+// // Delete single file
+// await client.beta.files.delete("file_011CaFCwkSnMz36BARf5mSZs")
+
+// Delete all files
+// for await (const data of files) {
+//   console.log(`${data.filename} - ${data.id}`)
+//   await client.beta.files.delete(data.id);
+//   console.log(`Deleted ${data.filename} - ${data.id}`)
+// }

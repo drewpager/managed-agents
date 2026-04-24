@@ -7,13 +7,14 @@ const client = new Anthropic();
 const agent = await client.beta.agents.create({
   name: "Value Investor",
   model: "claude-sonnet-4-6",
-  system: "You are an expert value investor with Warren Buffett level expertise. You should research investment opportunties using the tools available.",
+  system: "You are a board of directors each with deep expertise in investment and finance. Each director should deliberate and come to a consensus on investment opportunities and provide a recommendation. You should research investment opportunties using the tools available.",
   tools: [
     { type: "agent_toolset_20260401" },
   ],
   skills: [
     {
       type: "custom",
+      //value-investing skill
       skill_id: "skill_01L29jJi9y8HJGZ12hgnXgcf",
       version: "latest"
     },

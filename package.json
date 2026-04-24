@@ -1,7 +1,11 @@
 {
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
-    "@dotenvx/dotenvx": "^1.61.1"
+    "@dotenvx/dotenvx": "^1.61.1",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1"
   },
   "name": "managed-agents",
   "version": "1.0.0",
@@ -10,8 +14,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "dotenvx run npx tsx agent/index.ts",
-    "script": "dotenvx run npx tsx agent/script.ts",
+    "list-agents": "dotenvx run npx tsx agent/list-agents.ts",
+    "delete-agents": "dotenvx run npx tsx agent/delete-agents.ts",
     "invest": "dotenvx run npx tsx agent/invest.ts",
+    "dashboard": "dotenvx run npx tsx agent/dashboard.ts",
     "encrypt": "dotenvx encrypt -f .env",
     "decrypt": "dotenvx decrypt -f .env"
   },
